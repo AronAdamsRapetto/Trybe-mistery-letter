@@ -91,13 +91,16 @@ function geraCarta(palavras) {
 }
 
 function percorreCarta(palavras) {
+  let contValidaPalavras = 0;
   let contPalavras = 0;
   for (let i = 0; i < palavras.length; i += 1) {
+    contPalavras += 1;
     if (palavras[i] !== '') {
-      contPalavras += 1;
+      contValidaPalavras += 1;
     }
   }
-  return contPalavras;
+  document.getElementById('carta-contador').innerText = contPalavras;
+  return contValidaPalavras;
 }
 
 function validaCarta() {
