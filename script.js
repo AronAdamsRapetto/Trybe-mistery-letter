@@ -1,25 +1,115 @@
 const btnGeraCarta = document.getElementById('criar-carta');
 
-// function validaCarta() {
-//   if(carta.length === 0){
+function estiloAleatorio(palavra) {
+  const defineEstilo = Math.floor(Math.random() * 3) + 1;
+  switch (defineEstilo) {
+  case 1:
+    palavra.classList.add('newspaper');
+    break;
+  case 2:
+    palavra.classList.add('magazine1');
+    break;
+  case 3:
+    palavra.classList.add('magazine2');
+    break;
+  default:
+    break;
+  }
+  return palavra;
+}
 
-//   }
-// }
+function tamanhoAleatorio(palavra) {
+  const defineEstilo = Math.floor(Math.random() * 3) + 1;
+  switch (defineEstilo) {
+  case 1:
+    palavra.classList.add('medium');
+    break;
+  case 2:
+    palavra.classList.add('big');
+    break;
+  case 3:
+    palavra.classList.add('reallybig');
+    break;
+  default:
+    break;
+  }
+  return palavra;
+}
 
-function geraCarta() {
-  const textoInput = document.getElementById('carta-texto');
-  const palavrasCarta = textoInput.value.split(' ');
+function rotacaoAleatorio(palavra) {
+  const defineEstilo = Math.floor(Math.random() * 2) + 1;
+  switch (defineEstilo) {
+  case 1:
+    palavra.classList.add('rotateleft');
+    break;
+  case 2:
+    palavra.classList.add('rotateright');
+    break;
+  default:
+    break;
+  }
+  return palavra;
+}
+
+function inclinacaoAleatorio(palavra) {
+  const defineEstilo = Math.floor(Math.random() * 2) + 1;
+  switch (defineEstilo) {
+  case 1:
+    palavra.classList.add('skewleft');
+    break;
+  case 2:
+    palavra.classList.add('skewright');
+    break;
+  default:
+    break;
+  }
+  return palavra;
+}
+
+function alteraEstiloPalavra(event) {
+  let evento = event.target;
+  evento.classList = '';
+  evento = estiloAleatorio(evento);
+  evento = tamanhoAleatorio(evento);
+  evento = rotacaoAleatorio(evento);
+  evento = inclinacaoAleatorio(evento);
+}
+
+function geraCarta(palavras) {
   const carta = document.getElementById('carta-gerada');
   carta.innerHTML = '';
-  for (let i = 0; i < palavrasCarta.length; i += 1) {
-    const palavra = document.createElement('span');
-    palavra.innerText = palavrasCarta[i];
+  for (let i = 0; i < palavras.length; i += 1) {
+    let palavra = document.createElement('span');
+    palavra.innerText = palavras[i];
+    palavra = estiloAleatorio(palavra);
+    palavra = tamanhoAleatorio(palavra);
+    palavra = rotacaoAleatorio(palavra);
+    palavra = inclinacaoAleatorio(palavra);
+    palavra.addEventListener('click', alteraEstiloPalavra);
     carta.appendChild(palavra);
   }
 }
 
-btnGeraCarta.addEventListener('click', geraCarta);
+function percorreCarta(palavras) {
+  let contPalavras = 0;
+  for (let i = 0; i < palavras.length; i += 1) {
+    if (palavras[i] !== '') {
+      contPalavras += 1;
+    }
+  }
+  return contPalavras;
+}
 
-// function separaCarta() {
-//     const palavrasCarta = document.getElementById('carta-texto').value.slit(' ');
-// }
+function validaCarta() {
+  const textoInput = document.getElementById('carta-texto');
+  const palavrasCarta = textoInput.value.split(' ');
+  const carta = document.getElementById('carta-gerada');
+  const valorPalavras = percorreCarta(palavrasCarta);
+  if (valorPalavras > 0) {
+    geraCarta(palavrasCarta);
+  } else {
+    carta.innerText = 'Por favor, digite o conteúdo da carta.';
+  }
+}
+
+btnGeraCarta.addEventListener('click', validaCarta);
