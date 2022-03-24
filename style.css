@@ -1,0 +1,14 @@
+header {
+    text-align: center;
+}
+
+#box-input #carta-texto {
+    width: 100%;
+    
+}
+
+#box-input {
+    margin-top: 10%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
