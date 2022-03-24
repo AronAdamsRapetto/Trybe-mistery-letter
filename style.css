@@ -1,14 +1,13 @@
 header {
-    text-align: center;
+  text-align: center;
 }
 
-#box-input #carta-texto {
-    width: 100%;
-    
+#carta-texto {
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 #box-input {
-    margin-top: 10%;
-    margin-left: 10%;
-    margin-right: 10%;
+  margin: 10% 10% 25px 10%;
+  text-align: center;
 }
